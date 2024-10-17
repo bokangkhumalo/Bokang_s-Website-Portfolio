@@ -28,8 +28,10 @@ This website was built using the following technologies:
 ## 📂 Folder Structure
 
 ```plaintext
-.
-├── index.html        # Homepage
-├── css/
-│   └── styles.css    # Global styles
-└── images/           # Image assets
+└── pictures/           # Image assets
+├── Home.html        # Homepage
+├── about.html        # About Me page
+├── skills.html     # skills page
+├── contact.html      # Contact Me page
+├── styles.css    # Global styles
+
