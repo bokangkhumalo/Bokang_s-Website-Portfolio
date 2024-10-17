@@ -29,9 +29,6 @@ This website was built using the following technologies:
 
 ```plaintext
 └── pictures/           # Image assets
-├── Home.html        # Homepage
-├── about.html        # About Me page
-├── skills.html     # skills page
-├── contact.html      # Contact Me page
+├── Index.html        # Homepage
 ├── styles.css    # Global styles
 
