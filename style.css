@@ -10,6 +10,12 @@ html {
   scroll-padding-top: 80px; /* Adjust this value to match your header height */
 }
 
+@media (max-width: 768px) {
+  section:not(:first-child) {
+    margin-top: 100px; /* Adjust for smaller screens */
+  }
+}
+
 /*Header section*/
 header {
   position: fixed; /* Fix the header at the top */
@@ -19,7 +25,7 @@ header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
   display: flex;
   z-index: 1000;
-  padding: 25px 60px; /* Spacing around the header */
+  padding: 25px 15px; /* Spacing around the header */
   justify-content: space-between; /* Space between logo and nav */
   align-items: center; /* Vertically center the items */
 }
@@ -34,31 +40,65 @@ body {
   margin: 0; /* Remove default margin from h1 */
 }
 
-.logo img {
-  height: 50px; /* Adjust logo size */
-  width: 60px; /* Maintain aspect ratio */
-}
-
-nav {
+.nav-links {
   display: flex; /* Use flexbox for layout */
-  justify-content: center; /* Space links evenly */
-  align-items: center; /* Center items vertically */
-  padding: 0 100px;
+  gap: 30px;
+  padding-right: 5%;
 }
 
-nav div {
-  margin: 0 15px; /* Space between links */
+.nav-links div a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
 }
 
-nav a {
-  color: #fff; /* White text */
-  text-decoration: none; /* Remove underline */
-  font-size: 18px; /* Font size */
-  transition: color 0.3s; /* Smooth color transition */
-}
-
-nav a:hover {
+.nav-links div a:hover {
   color: #fa8072; /* Change color on hover */
+}
+
+/* Hamburger Icon Styling */
+.hamburger {
+  display: none;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  padding-right: 5%;
+}
+
+.hamburge:hover {
+  color: #1d2951; /* Change color on hover */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide navigation links on small screens */
+    flex-direction: column;
+    position: fixed;
+    top: 70px;
+    padding: 2%;
+    right: 20px;
+    background-color: #1d2951;
+    padding-right: 15%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 999;
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger icon on small screens */
+  }
+
+  /* Toggle Menu */
+  .nav-links.active {
+    display: flex; /* Show the menu when active */
+  }
 }
 
 /* Home section*/
@@ -72,7 +112,7 @@ nav a:hover {
 }
 
 .home-intro p {
-  padding-left: 5%;
+  padding-left: 7%;
   font-size: 18px;
   color: #1d2951;
 }
@@ -412,7 +452,7 @@ nav a:hover {
 
 /* Footer section */
 footer {
-  background-color: rgb(16, 12, 65); /* Same background as header */
+  background-color: #1d2951; /* Same background as header */
   padding: 30px 60px;
   display: flex;
   justify-content: space-between; /* Space between links and socials */
