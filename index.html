@@ -236,13 +236,31 @@
       </div>
     </section>
 
-    <div id="chatbot">
+    <!-- Chatbot Button -->
+    <div class="chatbot-button" onclick="toggleChatbot()">
+      <span>💬 Chat</span>
+    </div>
+
+    <!-- Chatbot Window (hidden initially) -->
+    <div class="chatbot-window" id="chatbotWindow">
+      <!-- Chatbot Header -->
+      <div class="chatbot-header">
+        <h4>Chatbot</h4>
+        <button onclick="toggleChatbot()">✖</button>
+      </div>
+
+      <!-- Chatbot Body -->
       <div id="chatbox">
         <div id="messages"></div>
       </div>
+
       <input type="text" id="userInput" placeholder="Type your message..." />
+
       <button id="sendButton">Send</button>
     </div>
+
+    <script src="script.js"></script>
+    <!-- Link to your JS file -->
 
     <!-- Simple footer -->
     <footer>

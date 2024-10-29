@@ -1,4 +1,11 @@
 // chatbot
+
+function toggleChatbot() {
+  const chatbotWindow = document.getElementById("chatbotWindow");
+  chatbotWindow.style.display =
+    chatbotWindow.style.display === "block" ? "none" : "block";
+}
+
 const messagesDiv = document.getElementById("messages");
 const userInput = document.getElementById("userInput");
 const sendButton = document.getElementById("sendButton");
@@ -22,7 +29,9 @@ function handleUserInput() {
   if (responses[input]) {
     displayMessage(responses[input], "bot");
     // If response is a navigation command, you can implement navigation
-    if (input === "about") {
+    if (input === "home") {
+      window.location.href = "#Home";
+    } else if (input === "about") {
       window.location.href = "#About"; // Navigate to About section
     } else if (input === "skills") {
       window.location.href = "#skills"; // Navigate to Skills section
