@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <link rel="stylesheet" href="style.css" />
+    <script></script>
     <title>Bokang's Website Portfolio</title>
   </head>
 
@@ -15,7 +24,7 @@
       <div class="logo">
         <h2>Bokang's Website Portfolio</h2>
       </div>
-      <nav>
+      <nav class="nav-links">
         <div>
           <a href="#Home"><ion-icon name="home"></ion-icon> Home</a>
         </div>
@@ -34,7 +43,14 @@
           <a href="#Contact"><ion-icon name="mail"></ion-icon> Contact</a>
         </div>
       </nav>
+      <!-- Hamburger Icon -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </div>
     </header>
+
+    <script src="script.js"></script>
+    <!-- Reference to your JavaScript file -->
 
     <!--Home section -->
     <section id="Home">
