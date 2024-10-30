@@ -245,6 +245,8 @@
     <div class="chatbot-window" id="chatbotWindow">
       <!-- Chatbot Header -->
       <div class="chatbot-header">
+        <!-- Bot icon -->
+        <ion-icon name="robot" class="bot-icon"></ion-icon>
         <h4>Chatbot</h4>
         <button onclick="toggleChatbot()">✖</button>
       </div>
@@ -254,9 +256,10 @@
         <div id="messages"></div>
       </div>
 
-      <input type="text" id="userInput" placeholder="Type your message..." />
-
-      <button id="sendButton">Send</button>
+      <div class="input-container">
+        <input type="text" id="userInput" placeholder="Type your message..." />
+        <button id="sendButton">Send</button>
+      </div>
     </div>
 
     <script src="script.js"></script>

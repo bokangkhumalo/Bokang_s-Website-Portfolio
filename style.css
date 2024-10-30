@@ -477,7 +477,7 @@ button {
 }
 
 .chatbot-button:hover {
-  background-color: #3b4a85;
+  background-color: #fa8072;
 }
 
 /* Chatbot window (hidden initially) */
@@ -485,7 +485,7 @@ button {
   position: fixed;
   bottom: 80px;
   right: 20px;
-  width: 300px;
+  width: 350px;
   max-height: 400px;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -494,6 +494,14 @@ button {
   display: none; /* Hidden by default */
   flex-direction: column;
   overflow: hidden;
+}
+
+/* Bot Icon Styling */
+.bot-icon {
+  font-size: 24px; /* Adjust icon size */
+  color: white; /* Icon color to match header text */
+  margin-right: 8px; /* Space between icon and text */
+  vertical-align: middle;
 }
 
 /* Chatbot header */
@@ -529,16 +537,27 @@ button {
 }
 
 /* Input and button container styling */
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px; /* Space between input and button */
+  width: 98;
+  align-items: center;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Input styling */
 #userInput {
-  width: 80%;
+  width: 70%; /* Adjusts width relative to container */
   padding: 8px;
-  margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
 
 #sendButton {
-  width: 50%;
+  width: 40%;
   padding: 8px;
   font-size: 16px;
   color: white;
@@ -552,7 +571,6 @@ button {
 
 #sendButton:hover {
   background-color: #fa8072;
-  transform: scale(1.05);
 }
 
 /* Footer section */

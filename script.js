@@ -13,6 +13,7 @@ const sendButton = document.getElementById("sendButton");
 const responses = {
   hi: "Hello! How can I assist you today?",
   "what is your name?": "I'm your friendly chatbot!",
+  home: "Welcome to my landing page!",
   help: "I can help you navigate. You can say 'about', 'skills', or 'contact'.",
   about: "You can learn more about me on the About section.",
   skills: "Check out my Skills section for more info!",
