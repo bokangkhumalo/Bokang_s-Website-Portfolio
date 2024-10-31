@@ -1,5 +1,3 @@
-// chatbot
-
 function toggleChatbot() {
   const chatbotWindow = document.getElementById("chatbotWindow");
   chatbotWindow.style.display =
@@ -20,48 +18,57 @@ const responses = {
   contact: "You can find my contact information in the Contact section.",
 };
 
-// Function to handle user input
 function handleUserInput() {
-  const input = userInput.value.toLowerCase();
+  const input = userInput.value.trim().toLowerCase();
+
+  // Don't process empty messages
+  if (!input) return;
+
   displayMessage(input, "user");
   userInput.value = "";
 
-  // Check for responses
   if (responses[input]) {
     displayMessage(responses[input], "bot");
-    // If response is a navigation command, you can implement navigation
-    if (input === "home") {
-      window.location.href = "#Home";
-    } else if (input === "about") {
-      window.location.href = "#About"; // Navigate to About section
-    } else if (input === "skills") {
-      window.location.href = "#skills"; // Navigate to Skills section
-    } else if (input === "contact") {
-      window.location.href = "#Contact"; // Navigate to Contact section
+
+    // Handle navigation
+    switch (input) {
+      case "home":
+        window.location.href = "#Home";
+        break;
+      case "about":
+        window.location.href = "#About";
+        break;
+      case "skills":
+        window.location.href = "#skills";
+        break;
+      case "contact":
+        window.location.href = "#Contact";
+        break;
     }
   } else {
     displayMessage("I'm sorry, I don't understand that.", "bot");
   }
 }
 
-// Function to display messages
 function displayMessage(message, sender) {
   const messageDiv = document.createElement("div");
   messageDiv.textContent = message;
   messageDiv.className = `message ${sender}`;
   messagesDiv.appendChild(messageDiv);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to the bottom
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-// Event listener for the send button
-sendButton.addEventListener("click", handleUserInput);
+// Event Listeners
+document.addEventListener("DOMContentLoaded", () => {
+  sendButton.addEventListener("click", handleUserInput);
 
-// Allow pressing Enter to send the message
-userInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    handleUserInput();
-  }
+  userInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      handleUserInput();
+    }
+  });
 });
+
 function toggleMenu() {
   const navLinks = document.querySelector(".nav-links");
   navLinks.classList.toggle("active");
