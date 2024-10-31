@@ -1,13 +1,16 @@
+// DOM Elements
+const messagesDiv = document.getElementById("messages");
+const userInput = document.getElementById("userInput");
+const sendButton = document.getElementById("sendButton");
+
+// Toggle chatbot visibility
 function toggleChatbot() {
   const chatbotWindow = document.getElementById("chatbotWindow");
   chatbotWindow.style.display =
     chatbotWindow.style.display === "block" ? "none" : "block";
 }
 
-const messagesDiv = document.getElementById("messages");
-const userInput = document.getElementById("userInput");
-const sendButton = document.getElementById("sendButton");
-
+// Chatbot responses
 const responses = {
   hi: "Hello! How can I assist you today?",
   "what is your name?": "I'm your friendly chatbot!",
@@ -20,8 +23,6 @@ const responses = {
 
 function handleUserInput() {
   const input = userInput.value.trim().toLowerCase();
-
-  // Don't process empty messages
   if (!input) return;
 
   displayMessage(input, "user");
@@ -29,24 +30,22 @@ function handleUserInput() {
 
   if (responses[input]) {
     displayMessage(responses[input], "bot");
-
-    // Handle navigation
-    switch (input) {
-      case "home":
-        window.location.href = "#Home";
-        break;
-      case "about":
-        window.location.href = "#About";
-        break;
-      case "skills":
-        window.location.href = "#skills";
-        break;
-      case "contact":
-        window.location.href = "#Contact";
-        break;
-    }
+    handleNavigation(input);
   } else {
-    displayMessage("I'm sorry, I don't understand that.", "bot");
+    displayMessage("Try saying 'help' to see what I can do!", "bot");
+  }
+}
+
+function handleNavigation(input) {
+  const navigationMap = {
+    home: "#Home",
+    about: "#About",
+    skills: "#skills",
+    contact: "#Contact",
+  };
+
+  if (navigationMap[input]) {
+    window.location.href = navigationMap[input];
   }
 }
 
@@ -58,18 +57,18 @@ function displayMessage(message, sender) {
   messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-// Event Listeners
+// Initialize event listeners when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
+  // Send button click
   sendButton.addEventListener("click", handleUserInput);
 
+  // Enter key press
   userInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       handleUserInput();
     }
   });
-});
 
-function toggleMenu() {
-  const navLinks = document.querySelector(".nav-links");
-  navLinks.classList.toggle("active");
-}
+  // Display welcome message
+  displayMessage("Hi! How can I help you today? Try saying 'help'.", "bot");
+});
