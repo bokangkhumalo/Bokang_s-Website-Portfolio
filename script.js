@@ -1,74 +1,84 @@
-// DOM Elements
-const messagesDiv = document.getElementById("messages");
-const userInput = document.getElementById("userInput");
-const sendButton = document.getElementById("sendButton");
-
-// Toggle chatbot visibility
-function toggleChatbot() {
-  const chatbotWindow = document.getElementById("chatbotWindow");
-  chatbotWindow.style.display =
-    chatbotWindow.style.display === "block" ? "none" : "block";
+function toggleMenu() {
+  const navLinks = document.querySelector(".nav-links");
+  navLinks.classList.toggle("active");
 }
 
-// Chatbot responses
-const responses = {
-  hi: "Hello! How can I assist you today?",
-  "what is your name?": "I'm your friendly chatbot!",
-  home: "Welcome to my landing page!",
-  help: "I can help you navigate. You can say 'about', 'skills', or 'contact'.",
-  about: "You can learn more about me on the About section.",
-  skills: "Check out my Skills section for more info!",
-  contact: "You can find my contact information in the Contact section.",
-};
+// chatbot
+// Toggle Chatbot visibility
+// Global variable declaration
+let isChatbotOpen = false;
 
-function handleUserInput() {
-  const input = userInput.value.trim().toLowerCase();
-  if (!input) return;
+document.addEventListener("DOMContentLoaded", function () {
+  const chatbot = document.getElementById("chatbot");
 
-  displayMessage(input, "user");
-  userInput.value = "";
+  if (chatbot) {
+    chatbot.style.display = "none";
+  }
+});
 
-  if (responses[input]) {
-    displayMessage(responses[input], "bot");
-    handleNavigation(input);
-  } else {
-    displayMessage("Try saying 'help' to see what I can do!", "bot");
+function toggleChatbot() {
+  const chatbot = document.getElementById("chatbot");
+  isChatbotOpen = !isChatbotOpen;
+  chatbot.style.display = isChatbotOpen ? "flex" : "none";
+}
+
+function sendMessage() {
+  const userInput = document.getElementById("userInput");
+  const message = userInput.value.trim();
+
+  if (message) {
+    addMessage("user", message);
+    generateBotResponse(message);
+    userInput.value = "";
   }
 }
 
-function handleNavigation(input) {
-  const navigationMap = {
-    home: "#Home",
-    about: "#About",
-    skills: "#skills",
-    contact: "#Contact",
+function handleKeyPress(event) {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+}
+
+function addMessage(sender, message) {
+  const chatMessages = document.getElementById("chatMessages");
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `message ${sender}-message`;
+  messageDiv.textContent = message;
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function generateBotResponse(userMessage) {
+  const responses = {
+    hello: "Hi there! How can I help you today?",
+    hi: "Hello! How can I assist you?",
+    "who are you":
+      "I am Bokang's portfolio chatbot assistant. Feel free to ask me questions!",
+    about:
+      " a software developer passionate about creating innovative solutions. I specialize in building creative websites and exciting programs, driven by a love for technology and continuous learning",
+    contact: "You can reach Bokang at bokangkhumalo0@gmail.com",
+    skills:
+      "Bokang is skilled in HTML, CSS, JavaScript, Java, C#, Android Kotlin, and SQL",
+    experience:
+      "Bokang is currently working as an Advanced Technical Academy Candidate at Capaciti x FNB",
+    education:
+      "Bokang holds a National Diploma in IT Software Development from IIE Rosebank College",
   };
 
-  if (navigationMap[input]) {
-    window.location.href = navigationMap[input];
-  }
-}
+  const defaultResponse =
+    "I'm not sure about that. Feel free to ask about Bokang's skills, education, experience, or contact information!";
 
-function displayMessage(message, sender) {
-  const messageDiv = document.createElement("div");
-  messageDiv.textContent = message;
-  messageDiv.className = `message ${sender}`;
-  messagesDiv.appendChild(messageDiv);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
+  const lowercaseMessage = userMessage.toLowerCase();
+  let botResponse = defaultResponse;
 
-// Initialize event listeners when DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-  // Send button click
-  sendButton.addEventListener("click", handleUserInput);
-
-  // Enter key press
-  userInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      handleUserInput();
+  for (let key in responses) {
+    if (lowercaseMessage.includes(key)) {
+      botResponse = responses[key];
+      break;
     }
-  });
+  }
 
-  // Display welcome message
-  displayMessage("Hi! How can I help you today? Try saying 'help'.", "bot");
-});
+  setTimeout(() => {
+    addMessage("bot", botResponse);
+  }, 500);
+}
